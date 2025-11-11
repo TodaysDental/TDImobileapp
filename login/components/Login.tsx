@@ -20,6 +20,7 @@ import { useRequestOtp, useVerifyOtp } from '../hooks/useLogin';
 // Define navigation type
 type RootStackParamList = {
   Login: undefined;
+  CallCenter: undefined;
   Dashboard: undefined;
 };
 
@@ -104,10 +105,10 @@ export const Login: React.FC = () => {
         Alert.alert('Success', 'Logged in successfully');
         // Store all tokens
         // React Native's AsyncStorage is handled in the hook
-        // Navigate to dashboard
+        // Navigate to call center screen
         navigation.reset({
           index: 0,
-          routes: [{ name: 'Dashboard' }],
+          routes: [{ name: 'CallCenter' }],
         });
       } else {
         setError('Authentication failed. Please try again.');

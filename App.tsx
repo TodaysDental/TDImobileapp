@@ -1,8 +1,16 @@
 import React from 'react';
-import { StatusBar } from 'react-native';
+import { StatusBar, LogBox } from 'react-native';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Provider } from 'jotai';
+import { CallCenterProvider } from './call-center/context/CallCenterProvider';
 import Navigation from './navigation';
+import { IncomingCallToast } from './call-center/components';
+
+// Ignore specific harmless warnings (optional)
+LogBox.ignoreLogs([
+  'ViewPropTypes will be removed',
+  'ColorPropType will be removed',
+]);
 
 // Create a client for React Query
 const queryClient = new QueryClient({
@@ -18,8 +26,11 @@ const App: React.FC = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <Provider>
-        <StatusBar barStyle="dark-content" backgroundColor="#ffffff" />
-        <Navigation />
+        <CallCenterProvider>
+          <StatusBar barStyle="dark-content" backgroundColor="#ffffff" />
+          <Navigation />
+          <IncomingCallToast />
+        </CallCenterProvider>
       </Provider>
     </QueryClientProvider>
   );

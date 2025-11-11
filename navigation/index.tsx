@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Login } from '../login/components/Login';
+import { CallCenterScreen } from '../call-center/examples';
 
 // Import other screens here
 // import Dashboard from '../screens/Dashboard';
@@ -10,6 +11,7 @@ import { Login } from '../login/components/Login';
 // Define your navigation types
 type RootStackParamList = {
   Login: undefined;
+  CallCenter: undefined;
   Dashboard: undefined;
   // Add other screens here
 };
@@ -58,6 +60,14 @@ export function Navigation() {
         ) : (
           // App screens
           <>
+            <Stack.Screen 
+              name="CallCenter" 
+              component={CallCenterScreen}
+              options={{ 
+                title: 'Call Center',
+                headerShown: false 
+              }}
+            />
             <Stack.Screen 
               name="Dashboard" 
               component={DashboardPlaceholder}
